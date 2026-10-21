@@ -1,0 +1,59 @@
+{
+  "entities": {
+    "Message": {
+      "title": "Contact Message",
+      "description": "Form submissions from the portfolio contact form",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "The name of the sender" },
+        "email": { "type": "string", "description": "The email of the sender" },
+        "message": { "type": "string", "description": "The message body" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server timestamp of creation" }
+      },
+      "required": ["name", "email", "message", "createdAt"]
+    },
+    "GuestbookEntry": {
+      "title": "Guestbook Entry",
+      "description": "Public comments left by visitors on the guestbook wall",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "The display name of the visitor" },
+        "avatar": { "type": "string", "description": "URL of the visitor's avatar image" },
+        "message": { "type": "string", "description": "The comment text" },
+        "userId": { "type": "string", "description": "ID of the visitor (authenticated or guest)" },
+        "isGoogleUser": { "type": "boolean", "description": "Whether the user signed in with Google" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server timestamp of creation" }
+      },
+      "required": ["name", "message", "userId", "isGoogleUser", "createdAt"]
+    },
+    "JournalEntry": {
+      "title": "Journal Entry",
+      "description": "Daily internship journal record submitted to Mapúa Malayan Colleges Laguna",
+      "type": "object",
+      "properties": {
+        "date": { "type": "string", "description": "The calendar date of the log (e.g. May 18, 2026)" },
+        "task": { "type": "string", "description": "The title or task name of the day" },
+        "shift": { "type": "string", "description": "The hours worked (e.g. 8:00 AM - 7:00 PM)" },
+        "area": { "type": "string", "description": "The engineering assignment department" },
+        "category": { "type": "string", "enum": ["Onboarding", "Performance", "Tailwind Migration", "QA & Testing", "Documentation", "Monitoring"], "description": "The work category" },
+        "content": { "type": "string", "description": "The detailed reflection body" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server timestamp of creation" }
+      },
+      "required": ["date", "task", "shift", "area", "category", "content", "createdAt"]
+    }
+  },
+  "firestore": {
+    "messages/{messageId}": {
+      "schema": "Message",
+      "description": "Collection of contact form message submissions"
+    },
+    "guestbook/{entryId}": {
+      "schema": "GuestbookEntry",
+      "description": "Collection of public guestbook entries"
+    },
+    "journals/{journalId}": {
+      "schema": "JournalEntry",
+      "description": "Collection of daily internship journal records"
+    }
+  }
+}

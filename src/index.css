@@ -7,13 +7,15 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Space Grotesk", sans-serif;
   
-  --color-accent: #3b82f6; /* Blue accent */
-  --color-neutral-50: #fafafa;
-  --color-neutral-100: #f5f5f5;
-  --color-neutral-200: #e5e5e5;
-  --color-neutral-800: #262626;
-  --color-neutral-900: #171717;
-  --color-neutral-950: #0a0a0a;
+  --color-accent: #4f46e5; /* Refined Electric Indigo */
+  --color-accent-hover: #4338ca;
+  --color-accent-light: #818cf8;
+  --color-neutral-50: #fbfbfd;
+  --color-neutral-100: #f3f4f6;
+  --color-neutral-200: #e5e7eb;
+  --color-neutral-800: #1f2937;
+  --color-neutral-900: #111827;
+  --color-neutral-950: #030712; /* Rich Obsidian */
 }
 
 @layer base {
@@ -27,9 +29,18 @@
 }
 
 .glass {
-  @apply bg-white/70 dark:bg-neutral-950/70 backdrop-blur-md border border-white/20 dark:border-neutral-800/50;
+  @apply bg-white/60 dark:bg-neutral-950/60 backdrop-blur-md border border-neutral-200/45 dark:border-neutral-800/45 shadow-sm;
+}
+
+.glass-card {
+  @apply bg-white/40 dark:bg-neutral-900/40 backdrop-blur-md border border-neutral-200/40 dark:border-neutral-800/40 hover:border-neutral-300/60 dark:hover:border-neutral-700/60 transition-all duration-300;
 }
 
 .section-padding {
-  @apply py-20 px-6 md:px-12 lg:px-24;
+  @apply py-24 md:py-32 px-6 md:px-12 lg:px-24;
+}
+
+/* Fine micro-interactions */
+.glow-on-hover:hover {
+  box-shadow: 0 0 25px -5px rgba(79, 70, 229, 0.15);
 }

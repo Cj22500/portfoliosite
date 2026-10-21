@@ -1,5 +1,6 @@
 {
   "name": "Cyril Justin B. Ayson - Portfolio",
-  "description": "A modern, responsive personal portfolio for Cyril Justin B. Ayson, a computer science student.",
-  "requestFramePermissions": []
+  "description": "A modern, responsive personal portfolio for me, Cyril Justin B. Ayson, a computer science student with a built-in interactive AI chatbot.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

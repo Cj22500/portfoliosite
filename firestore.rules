@@ -1,0 +1,102 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // 1. Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // --- Helpers ---
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isVerifiedUser() {
+      return isSignedIn() && request.auth.token.email_verified == true;
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // --- Validation Blueprints ---
+
+    function isValidMessage(data) {
+      return data.keys().hasAll(['name', 'email', 'message', 'createdAt']) 
+        && data.keys().size() == 4
+        && data.name is string && data.name.size() >= 1 && data.name.size() <= 100
+        && data.email is string && data.email.size() >= 3 && data.email.size() <= 150
+        && data.message is string && data.message.size() >= 1 && data.message.size() <= 1000
+        && data.createdAt == request.time;
+    }
+
+    function isValidGuestbookEntry(data) {
+      return data.keys().hasAll(['name', 'message', 'userId', 'isGoogleUser', 'createdAt'])
+        && (data.keys().size() == 5 || (data.keys().size() == 6 && data.keys().hasAll(['avatar'])))
+        && data.name is string && data.name.size() >= 1 && data.name.size() <= 50
+        && data.message is string && data.message.size() >= 1 && data.message.size() <= 500
+        && data.userId is string && data.userId.size() >= 1 && data.userId.size() <= 128
+        && data.isGoogleUser is bool
+        && data.createdAt == request.time
+        && (!data.keys().hasAll(['avatar']) || (data.avatar is string && data.avatar.size() <= 500))
+        && (!data.isGoogleUser || (isVerifiedUser() && data.userId == request.auth.uid));
+    }
+
+    function isValidJournalEntry(data) {
+      return data.keys().hasAll(['date', 'task', 'shift', 'area', 'category', 'content', 'createdAt'])
+        && data.keys().size() == 7
+        && data.date is string && data.date.size() >= 1 && data.date.size() <= 50
+        && data.task is string && data.task.size() >= 1 && data.task.size() <= 100
+        && data.shift is string && data.shift.size() >= 1 && data.shift.size() <= 50
+        && data.area is string && data.area.size() >= 1 && data.area.size() <= 50
+        && data.category is string && (
+          data.category == 'Onboarding' || 
+          data.category == 'Performance' || 
+          data.category == 'Tailwind Migration' || 
+          data.category == 'QA & Testing' || 
+          data.category == 'Documentation' || 
+          data.category == 'Monitoring'
+        )
+        && data.content is string && data.content.size() >= 1 && data.content.size() <= 3000
+        && data.createdAt == request.time;
+    }
+
+    // --- Collection Routes ---
+
+    // Contact messages: Write-only for everyone (no reading or updating via client)
+    match /messages/{messageId} {
+      allow create: if isValidId(messageId) && isValidMessage(incoming());
+    }
+
+    // Guestbook: Anyone can read/list. Writes allowed if valid.
+    // Deletion allowed only if the entry belongs to the logged-in Google user.
+    match /guestbook/{entryId} {
+      allow read, list: if true;
+      allow create: if isValidId(entryId) && isValidGuestbookEntry(incoming());
+      // Updates are forbidden entirely for immutability
+      allow update: if false;
+      // Only the authoring Google user can delete their own entry
+      allow delete: if isSignedIn() && existing().isGoogleUser == true && existing().userId == request.auth.uid;
+    }
+
+    // Journals: Anyone can read/list. Writes allowed only by the verified portfolio owner.
+    match /journals/{journalId} {
+      allow read, list: if true;
+      allow create, update: if isValidId(journalId) 
+        && isVerifiedUser() 
+        && request.auth.token.email == 'cyriljustin225@gmail.com' 
+        && isValidJournalEntry(incoming());
+      allow delete: if isVerifiedUser() 
+        && request.auth.token.email == 'cyriljustin225@gmail.com';
+    }
+  }
+}
