@@ -1,20 +1,30 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Cyril Justin B. Ayson - Interactive Full-Stack Portfolio & AI Assistant
 
-# Run and deploy your AI Studio app
+**Live Deployment (Google Cloud Run):** [https://cyril-justin-b-ayson-portfolio-370079760356.us-west1.run.app/](https://cyril-justin-b-ayson-portfolio-370079760356.us-west1.run.app/)
 
-This contains everything you need to run your app locally.
+A production-grade interactive developer portfolio, OCR playground, and security-hardened AI assistant built with **React 19**, **TypeScript**, **Tailwind CSS v4**, **Node.js / Express (`server.ts`)**, **Google Gemini API (`@google/genai`)**, **Tesseract OCR**, and **Firebase Firestore**.
 
-View your app in AI Studio: https://ai.studio/apps/e30bf7ba-11ba-45af-b00f-0a9ddfe01f16
+## Key Engineering Highlights
+- **Security-Hardened Gemini LLM Assistant (`server.ts` & `security_spec.md`)**: Server-side integration with the Google Gemini SDK featuring multi-layer prompt-injection defense, input length & character sanitization, strict domain/context boundary enforcement, and per-IP rate limiting.
+- **Interactive Project Showcases & Case Studies**: Detailed architectural breakdowns, metrics, and interactive previews of enterprise SaaS e-commerce engineering, multi-engine OCR document digitization (*DocuChain*), and cloud AI proctoring (*MakiTest*).
+- **On-Demand OCR Demo Endpoint**: Integrated server-side Tesseract OCR (`eng.traineddata`) pipeline for live text extraction demonstrations.
+- **Cloud-Native Deployment**: Containerized and deployed on **Google Cloud Run** (`us-west1`) with **Firebase / Cloud Firestore** persistence.
 
-## Run Locally
+## Tech Stack
+- **Frontend**: React 19, TypeScript, Tailwind CSS v4, Vite, Framer Motion, Lucide Icons
+- **Backend**: Node.js, Express (`server.ts`), `@google/genai` (Gemini API), Tesseract.js
+- **Database & Cloud**: Google Cloud Run, Firebase Firestore (`firestore.rules`)
 
-**Prerequisites:**  Node.js
-
-
+## Local Setup
 1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+   ```bash
+   npm install
+   ```
+2. Configure `.env.local` (see `.env.example`):
+   ```env
+   GEMINI_API_KEY=your_api_key_here
+   ```
+3. Start the full-stack development server:
+   ```bash
+   npm run dev
+   ```
