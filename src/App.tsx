@@ -65,48 +65,138 @@ const PROJECTS: Project[] = [
   {
     id: 5,
     title: "E-Commerce Checkout Performance Audit & Optimization Engine",
-    description: "An automated performance audit and optimization suite comparing Shopify and Prosperna checkout journeys using Puppeteer and Lighthouse User Flows, analyzing Core Web Vitals to eliminate main-thread bottlenecks.",
-    tags: ["Puppeteer", "Lighthouse", "Next.js", "Core Web Vitals", "Webpack"],
+    description: "Automated Puppeteer and Lighthouse User-Flow benchmarking suite comparing multi-step purchasing funnels (Home → PDP → Cart → Checkout) across Prosperna and leading Philippine Shopify storefronts, proving a 58% reduction in mobile Total Blocking Time (160ms vs. 380ms) and saving ~140 KB of initial JS.",
+    tags: ["Puppeteer", "Lighthouse CI", "Next.js", "Core Web Vitals", "Webpack SplitChunks"],
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
     link: "https://github.com/Cj22500/portfoliosite",
     github: "https://github.com/Cj22500/portfoliosite",
     hasInteractiveAudit: true
   },
   {
+    id: 6,
+    title: "DocuChain — AI & PreP-OCR Document Digitization Platform",
+    description: "End-to-end AI digitization platform for regulated public school records (DepEd Form 137 across 1983–2015 templates). Combines a 3-engine OCR ensemble (INT8-quantized Microsoft TrOCR, Tesseract, EasyOCR), PreP-OCR image restoration (+104% contrast on aged paper), and a React Human-in-the-Loop dual-pane registrar verification workspace, cutting processing time by 85%+ (<2 mins vs. 15–20 mins).",
+    tags: ["Python", "Flask", "React", "TrOCR (INT8)", "OpenCV", "EasyOCR"],
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=800",
+    link: "https://github.com/Cj22500/docuchain-revamp-investigation",
+    github: "https://github.com/Cj22500/docuchain-revamp-investigation"
+  },
+  {
+    id: 3,
+    title: "MakiTest (GodsEye) — Cloud-Native AI Exam Supervision Ecosystem",
+    description: "Undergraduate CS thesis & cloud-native AI exam proctoring platform using MediaPipe 3D facial/pose landmarks and CNNs to detect suspicious behavior in real time. Deployed on Google Cloud Run with HTTP 206 Partial Content range-request video streaming, paired with a React 19 + Gemini AI Exam Generator.",
+    tags: ["Python", "Django", "React 19", "MediaPipe 3D", "WebSockets", "Cloud Run"],
+    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800",
+    link: "https://github.com/Cj22500/New-MAKITEST-Web-App-Analytics-test",
+    github: "https://github.com/Cj22500/New-MAKITEST-Web-App-Analytics-test"
+  },
+  {
+    id: 7,
+    title: "AR Test Lab — 3D Spatial Computing & Mobile AR Simulator",
+    description: "Interactive 3D mobile augmented reality laboratory simulator built in C# and Unity 3D. Uses AR Foundation (ARCore/ARKit) ARRaycastManager to project 2D touch inputs into 3D world space (Pose, Vector3, Quaternion) with rigid-body collision merging, proximity triggers, and Firebase Firestore persistence.",
+    tags: ["C# (.NET)", "Unity 3D", "AR Foundation", "ARCore / ARKit", "Firebase"],
+    image: "https://images.unsplash.com/photo-1617802690992-15d93263d3a9?auto=format&fit=crop&q=80&w=800",
+    link: "https://github.com/Cj22500/AR-Test-Lab",
+    github: "https://github.com/Cj22500/AR-Test-Lab"
+  },
+  {
     id: 1,
-    title: "WizSalon KMP",
-    description: "A cross-platform salon management app built with Kotlin Multiplatform. Features an Android client and a desktop/web admin panel.",
-    tags: ["Kotlin", "KMP", "Android", "Compose"],
+    title: "Wizaloon (WizSalon KMP) — Cross-Platform Salon Management",
+    description: "Unified cross-platform salon management ecosystem built with Kotlin Multiplatform (KMP) and Compose Multiplatform across Android, iOS, Web, and Desktop clients, backed by Node.js, Django REST Framework, and Firebase Firestore for real-time booking synchronization and RBAC.",
+    tags: ["Kotlin Multiplatform", "Compose", "Node.js", "Django REST", "Firebase"],
     image: "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&q=80&w=800",
     link: "https://github.com/Cj22500/Wizaloon",
     github: "https://github.com/Cj22500/Wizaloon"
   },
   {
+    id: 8,
+    title: "DevPulse & Aura — React 19 + Real-Time WebSockets Suite",
+    description: "Full-stack React 19 + TypeScript applications: DevPulse delivers Agile Sprint & Kanban board management with RBAC and velocity telemetry; Aura provides a real-time WebSocket e-commerce storefront with an embedded Developer API Inspector.",
+    tags: ["React 19", "TypeScript", "Tailwind CSS v4", "Express", "WebSockets"],
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800",
+    link: "https://github.com/Cj22500/DevPulse",
+    github: "https://github.com/Cj22500/DevPulse"
+  },
+  {
+    id: 9,
+    title: "MMCL Seminar Explorer — AI Academic Discovery Platform",
+    description: "Full-stack seminar discovery and career path recommendation platform built for Mapúa Malayan Colleges Laguna (CCIS) students using React 19, TypeScript, Express, and the Google Gemini API.",
+    tags: ["React 19", "TypeScript", "Gemini API", "Express", "Academic Tool"],
+    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800",
+    link: "https://github.com/Cj22500/MMCL-Seminar-Explorer",
+    github: "https://github.com/Cj22500/MMCL-Seminar-Explorer"
+  },
+  {
     id: 2,
-    title: "CAESARTRAINER",
-    description: "A CNN trainer for identifying actions.",
-    tags: ["CNN", "Action Recognition", "AI"],
+    title: "CAESARTRAINER & FlappyWizard",
+    description: "Convolutional Neural Network (CNN) action-recognition trainer for classifying human video sequences alongside an interactive 8-bit Java arcade game with custom physics and sprite mechanics.",
+    tags: ["CNN", "Deep Learning", "Action Recognition", "Java"],
     image: "https://images.unsplash.com/photo-1555255707-c07966088b7b?auto=format&fit=crop&q=80&w=800",
     link: "https://github.com/Cj22500/CAESARTRAINER",
     github: "https://github.com/Cj22500/CAESARTRAINER"
+  }
+];
+
+const ML_CAPSTONES = [
+  {
+    title: "Supervised ML: Customer Churn Classification",
+    subtitle: "IBM Machine Learning Specialization Capstone",
+    metrics: "Logistic Regression, Random Forests & Gradient Boosting",
+    tags: ["Scikit-Learn", "Pandas", "SMOTE", "ROC-AUC"],
+    description: "Formulated a binary churn prediction pipeline for telecom subscriber retention. Engineered class-imbalance mitigation (SMOTE & class weighting), L1/L2 regularized Logistic Regression, and Gradient Boosted Trees to maximize recall on high-risk churn cohorts."
   },
   {
-    id: 3,
-    title: "GodsEye",
-    description: "A prototype for a monitoring system for examination supervision.",
-    tags: ["Monitoring", "Supervision", "Prototype"],
-    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800",
-    link: "https://github.com/Cj22500/GodsEye",
-    github: "https://github.com/Cj22500/GodsEye"
+    title: "Unsupervised ML: Customer Segmentation & PCA",
+    subtitle: "IBM Machine Learning Specialization Capstone",
+    metrics: "K-Means Clustering, PCA & Hierarchical Dendrograms",
+    tags: ["K-Means", "PCA", "Silhouette Score", "Scikit-Learn"],
+    description: "Applied Principal Component Analysis (PCA) to compress high-dimensional multi-channel purchasing telemetry while preserving >85% explained variance, isolating distinct customer personas via K-Means and Agglomerative Clustering."
   },
   {
-    id: 4,
-    title: "FlappyWizard",
-    description: "A magical twist on the classic Flappy Bird game, featuring a wizard character and unique gameplay mechanics.",
-    tags: ["Game Dev", "Java", "Interactive"],
-    image: "/images/birds-is-flying-in-8-bit-pixel-art-animal-game-assets-in-illustration-vector.webp",
-    link: "https://github.com/Cj22500/FlappyWizard",
-    github: "https://github.com/Cj22500/FlappyWizard"
+    title: "Deep Learning: Pneumonia CNN & Course Recommender",
+    subtitle: "IBM Deep Learning & Recommender Systems Capstones",
+    metrics: "Transfer Learning CNNs & Matrix Factorization",
+    tags: ["CNNs", "Transfer Learning", "Collaborative Filtering", "SVD"],
+    description: "Trained deep Convolutional Neural Networks with spatial augmentation and transfer learning to classify chest X-ray pneumonia pathology, and built a hybrid course recommendation engine combining content-based filtering and SVD matrix factorization."
+  }
+];
+
+const CERTIFICATIONS = [
+  {
+    name: "IBM AI Developer Professional Certificate",
+    issuer: "IBM / Coursera",
+    credentialId: "ID: 5BJMANEHPJIG",
+    details: "10-Course Program: Generative AI, Prompt Engineering, Python & Flask AI Microservices, Watson NLP, Full-Stack Software Engineering."
+  },
+  {
+    name: "IBM Machine Learning Professional Certificate",
+    issuer: "IBM / Coursera",
+    credentialId: "ID: WJ5YVULQONYC",
+    details: "6-Course Advanced Program: Exploratory Data Analysis, Supervised & Unsupervised ML, Deep Learning & Reinforcement Learning, ML Capstone."
+  },
+  {
+    name: "Developing AI Applications with Python and Flask",
+    issuer: "IBM / Coursera",
+    credentialId: "Verified Certificate",
+    details: "RESTful AI microservice deployment, Watson NLP integration, unit testing, and PEP8 packaging."
+  },
+  {
+    name: "Building Generative AI-Powered Applications with Python",
+    issuer: "IBM / Coursera",
+    credentialId: "Verified Certificate",
+    details: "LLM orchestration, RAG pipelines, conversational memory, and programmatic guardrail architectures."
+  },
+  {
+    name: "Introduction to Cloud Computing & Google Cloud Skills",
+    issuer: "IBM & Google Cloud",
+    credentialId: "Verified Credentials",
+    details: "Cloud Run serverless containers, Compute Engine, Cloud Storage, IaaS/PaaS/SaaS, and Docker containerization."
+  },
+  {
+    name: "CompTIA Tech+ Certification",
+    issuer: "CompTIA",
+    credentialId: "ID: 1d7051cce2a74591aec023e85dcf560a",
+    details: "Foundational computing architecture, networking, database systems, software development, and security principles."
   }
 ];
 
@@ -114,56 +204,58 @@ const EXPERIENCES: Experience[] = [
   {
     id: 4,
     role: "Software Engineer Intern",
-    company: "Prosperna Inc.",
-    period: "May 2026 – October 2026",
+    company: "Prosperna Inc. (Completed 6-Month Tenure — 480 Verified Practicum Hours)",
+    period: "May 2026 – November 2026",
     description: [
-      "Authored 489 Pull Requests (453 merged — 92.6% merge rate) across 9 microservice repositories, driving core feature delivery and architectural modernization for Philippine and global MSME e-commerce.",
-      "Spearheaded the 21-part Merchant Dashboard UI migration from legacy React-Bootstrap to Tailwind CSS v4, authoring Headless UI Dialog Architecture primitives (AppModal) and standardizing design tokens.",
-      "Engineered storefront performance optimizations with Next.js Webpack splitChunks and deferred telemetry loading, benchmarked via automated Puppeteer + Lighthouse User Flows.",
-      "Delivered the Multi-Country Address Resolution Engine (PH, US, CA, AU, NZ) across checkout funnels, customer accounts, and back-office order management.",
-      "Built the Store-Level Preparation Buffer System for scheduled deliveries (Lalamove, J&T, Store Pickup) open to all merchant tiers.",
-      "Maintained >80% test coverage with Vitest and Jest while enforcing a zero-warning CI/CD quality gate across ESLint and Stylelint."
+      "Independently authored 503 Pull Requests (468 merged — 93.0% merge rate) across 9 microservice repositories, driving end-to-end feature delivery across Next.js storefronts, React admin portals, and Node.js backend services.",
+      "Spearheaded the 21-module Merchant Dashboard UI migration off React-Bootstrap to Tailwind CSS v4, re-engineering foundational UI primitives (AppButton, AppModal, Grid, InputGroup, Spinner, TooltipIcon) across 336+ files and 455+ call sites with zero visual regressions.",
+      "Cut initial storefront JS payload by 43% (~140 KB saved) via Next.js Webpack splitChunks, deferred post-hydration telemetry (Grafana Faro, OpenTelemetry), and conditional payment SDK loading — achieving 58% lower mobile Total Blocking Time (160ms vs. 380ms) against leading Philippine Shopify storefronts.",
+      "Engineered atomic notification state-claim locking (findOneAndUpdate) and retry recovery across order and Amazon SES / SendGrid email microservices, store-timezone UTC offset serialization (scheduled_at), and MongoDB ObjectId createdAt timestamp fallbacks.",
+      "Architected the 5-country address and Google Maps coordinate resolution engine (PH, US, CA, AU, NZ) across 4 platform surfaces with country-aware CSV export sanitization, and built store-level Order Processing Time buffers (ClickUp 86eqqfmv1).",
+      "Contributed to customer-facing MaxAI chat components and domain sub-agents while maintaining >80% unit test coverage (685+ passing Vitest/Jest tests) and zero-warning ESLint, Stylelint, and TypeScript CI/CD gates."
     ],
     showDetailsButton: true
   },
   {
     id: 1,
     role: "Bachelor of Science in Computer Science",
-    company: "Mapúa Malayan Colleges Laguna",
-    period: "2019 - Present",
-    description: "Current college student, actively learning software development, algorithms, and emerging technologies."
+    company: "Mapúa Malayan Colleges Laguna (CCIS)",
+    period: "Coursework Completed Nov 2026 (Graduation: 2027)",
+    description: [
+      "Completed 100% of academic coursework, undergraduate thesis (MakiTest), and the 480-hour Software Engineering Practicum (awaiting 2027 commencement ceremony; available for immediate full-time work).",
+      "Engineered the MMCL Seminar Explorer (React 19, TypeScript, Gemini API) for CCIS students.",
+      "Course Highlights: Data Structures & Algorithms, Object-Oriented Programming (C# / Java), Software Engineering 1 & 2 (Agile SDLC), Artificial Intelligence & Machine Learning, Digital Image Processing & Computer Vision, Database Management Systems (SQL), and Cloud / Distributed Computing."
+    ]
   },
   {
     id: 2,
-    role: "Open Source Contributor",
-    company: "GitHub Community",
-    period: "2019 - Present",
+    role: "Open Source & Full-Stack Software Developer",
+    company: "GitHub Community (github.com/Cj22500)",
+    period: "2019 – Present",
     description: [
-      "Actively contributing to open-source projects on GitHub (github.com/Cj22500).",
-      "Focusing on software optimization and community-driven development."
+      "Authored 538+ Pull Requests (499 merged) across enterprise and open-source repositories.",
+      "Architected full-stack AI, computer vision, and cross-platform systems including DocuChain (3-engine OCR + INT8 TrOCR), MakiTest (Cloud Run + MediaPipe 3D), AR Test Lab (Unity 3D C# + ARCore), Wizaloon KMP, DevPulse, and Aura."
     ]
   },
   {
     id: 3,
     role: "Freelance Technical Specialist",
     company: "Self-Employed",
-    period: "2017 - Present",
+    period: "2017 – Present",
     description: [
-      "Fixing and troubleshooting computer hardware.",
-      "Debugging and optimizing software.",
-      "Photo and video editing projects.",
-      "Various odd jobs requiring technical and creative problem-solving."
+      "Independently diagnosed and resolved complex OS-level software crashes, hardware/firmware faults, and network bottlenecks for private clients.",
+      "Built custom automation scripts and multimedia workflows in fast-paced turnaround environments."
     ]
   }
 ];
 
 const SKILLS = [
-  { category: "Frontend & Architecture", items: ["React 18", "Next.js", "TypeScript", "Tailwind CSS v4", "Headless UI", "Formik / Yup", "Redux / Zustand"] },
-  { category: "Backend & Microservices", items: ["Node.js", "Express", "RESTful APIs", "PostgreSQL", "Redis", "SendGrid / SES", "Courier Integrations"] },
-  { category: "Testing & Performance", items: ["Vitest", "Jest", "Playwright E2E", "Puppeteer", "Lighthouse User Flows", "ESLint / Stylelint"] },
-  { category: "DevOps & Engineering Workflow", items: ["Git Worktrees", "GitHub CLI (gh)", "Webpack Optimization", "Docker", "Vite", "ClickUp API"] },
-  { category: "AI & Modern Tooling", items: ["Claude Code CLI", "Gemini API", "MaxAI Chat Integration", "Google AI Studio"] },
-  { category: "Core Computer Science", items: ["System Design", "Data Structures", "Algorithms", "Internationalization (i18n)", "Web Accessibility (a11y)"] }
+  { category: "Languages & Runtimes", items: ["TypeScript & JavaScript (ES2024)", "Python", "Node.js", "C# (.NET)", "Kotlin & Java", "SQL & C++", "HTML5 & CSS3 / SCSS"] },
+  { category: "Frontend & Design Systems", items: ["React 18 / 19 & Next.js (SSR)", "Tailwind CSS v4", "Headless UI (AppModal)", "Redux Toolkit & Zustand", "Formik & Yup", "WCAG 2.1 AA Accessibility"] },
+  { category: "Backend & Databases", items: ["Node.js & Express.js", "Django / DRF, Flask & FastAPI", "MongoDB (Mongoose) & PostgreSQL", "Redis & Firebase (Auth/Firestore)", "RESTful APIs & WebSockets", "Amazon SES / SendGrid & JWT RBAC"] },
+  { category: "AI, 3D Spatial & Computer Vision", items: ["Google Gemini API (@google/genai)", "TrOCR (INT8 Quantized) & EasyOCR", "Tesseract OCR & PreP-OCR", "MediaPipe 3D & OpenCV", "Unity 3D & AR Foundation (ARCore)", "Scikit-Learn, CNNs, PCA & K-Means"] },
+  { category: "Testing & Web Performance", items: ["Vitest & Jest (>80% Coverage)", "Playwright E2E & Puppeteer", "Lighthouse User-Flow Audits", "Webpack SplitChunks Tuning", "Core Web Vitals (TBT / LCP / CLS)", "ESLint & Stylelint Zero-Warning CI"] },
+  { category: "DevOps, Cloud & Workflow", items: ["Google Cloud Run & Docker", "GitHub Actions CI/CD", "Multi-Repo Git Worktrees & gh CLI", "Claude Code CLI & AI-Assisted SDLC", "Render, Vercel & Linux/Bash"] }
 ];
 
 // --- Components ---
@@ -378,7 +470,7 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.1 }}
         >
           <span className="inline-block px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-6">
-            Computer Science Student
+            AI-Native Full-Stack Software Engineer • 503 PRs Authored
           </span>
         </motion.div>
         
@@ -399,8 +491,7 @@ const Hero = () => {
            transition={{ duration: 0.8, delay: 0.5 }}
         >
           <p className="text-xl md:text-2xl text-neutral-600 dark:text-neutral-300 max-w-2xl mb-12 leading-relaxed">
-            Aspiring <span className="text-neutral-900 dark:text-white font-medium">Fullstack Developer</span> with a strong focus on backend systems, databases, and Machine Learning. 
-            I build end-to-end applications and integrate AI to solve complex real-world problems.
+            <span className="text-neutral-900 dark:text-white font-medium">Full-Stack Software Engineer & Applied Systems Researcher</span> specializing in high-conversion web platforms, federated microservices, and quantized computer vision pipelines. Authored <span className="text-neutral-900 dark:text-white font-medium">503 Pull Requests (468 merged)</span> across 9 production microservices at Prosperna Inc.
           </p>
         </motion.div>
           
@@ -456,9 +547,9 @@ const About = () => {
               className="rounded-3xl shadow-2xl grayscale hover:grayscale-0 transition-all duration-700"
               referrerPolicy="no-referrer"
             />
-            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-accent rounded-2xl flex items-center justify-center text-white p-4 shadow-xl">
+            <div className="absolute -bottom-6 -right-6 w-36 h-36 bg-accent rounded-2xl flex items-center justify-center text-white p-4 shadow-xl">
               <p className="text-xs font-bold uppercase tracking-tighter leading-tight">
-                Computer Science <br /> Student
+                B.S. CS Completed <br /> 503 PRs Shipped
               </p>
             </div>
           </div>
@@ -472,10 +563,10 @@ const About = () => {
         >
           <h2 className="text-5xl font-bold mb-8 text-neutral-900 dark:text-white">About Me</h2>
           <p className="text-lg text-neutral-600 dark:text-neutral-300 mb-6 leading-[1.8]">
-            I am a Computer Science student actively pursuing a career as a Fullstack Software Engineer with a strong interest in Artificial Intelligence. I enjoy building complete applications, from crafting intuitive user interfaces to developing robust backend services and designing relational database schemas.
+            I am an AI-Native Full-Stack Software Engineer who has completed 100% of my B.S. Computer Science coursework, thesis, and 480-hour Software Engineering Practicum at Mapúa Malayan Colleges Laguna (available for immediate full-time work ahead of 2027 commencement). During my 6-month enterprise engineering tenure at Prosperna Inc., I authored 503 Pull Requests (468 merged — 93.0% merge rate) across 9 microservice repositories.
           </p>
           <p className="text-lg text-neutral-600 dark:text-neutral-300 mb-12 leading-[1.8]">
-            Beyond traditional fullstack development, I am deeply invested in Machine Learning. Whether I'm implementing client-side logic, training predictive models, or optimizing complex SQL queries, I am driven by a passion for building intelligent, data-driven solutions.
+            Across React 18/19, Next.js, TypeScript, Node.js, Python, and C#, I specialize in migrating large-scale frontend design systems (336+ files to Tailwind CSS v4), cutting mobile checkout Total Blocking Time by 58%, and engineering production AI/CV systems—from 3-engine quantized OCR pipelines (DocuChain) and Cloud Run exam proctoring (MakiTest) to 3D mobile AR simulators (AR Test Lab).
           </p>
 
           <div className="grid grid-cols-2 gap-6">
@@ -623,6 +714,88 @@ const Projects = ({ onOpenAuditModal }: { onOpenAuditModal: () => void }) => {
               onOpenAudit={onOpenAuditModal}
             />
           ))}
+        </div>
+
+        {/* Applied Machine Learning Capstones */}
+        <div className="mt-24 pt-16 border-t border-neutral-200/60 dark:border-neutral-800/60">
+          <div className="mb-10">
+            <span className="text-xs font-bold uppercase tracking-widest text-accent font-mono block mb-2">
+              IBM Machine Learning Specialization
+            </span>
+            <h3 className="text-3xl md:text-4xl font-bold text-neutral-900 dark:text-white">
+              Machine Learning Capstones & Applied AI Reports
+            </h3>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {ML_CAPSTONES.map((capstone) => (
+              <div
+                key={capstone.title}
+                className="p-6 rounded-3xl glass-card border border-neutral-200/60 dark:border-neutral-800/60 flex flex-col justify-between"
+              >
+                <div>
+                  <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-accent block mb-2">
+                    {capstone.subtitle}
+                  </span>
+                  <h4 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">
+                    {capstone.title}
+                  </h4>
+                  <p className="text-xs font-mono text-emerald-600 dark:text-emerald-400 mb-3">
+                    {capstone.metrics}
+                  </p>
+                  <p className="text-neutral-500 dark:text-neutral-400 text-sm leading-relaxed mb-4">
+                    {capstone.description}
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-1.5 pt-3 border-t border-neutral-200/40 dark:border-neutral-800/40">
+                  {capstone.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-[10px] font-mono font-bold uppercase px-2 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Verified Professional Certifications */}
+        <div className="mt-20 pt-16 border-t border-neutral-200/60 dark:border-neutral-800/60">
+          <div className="mb-10">
+            <span className="text-xs font-bold uppercase tracking-widest text-accent font-mono block mb-2">
+              Verified Credentials
+            </span>
+            <h3 className="text-3xl md:text-4xl font-bold text-neutral-900 dark:text-white">
+              Professional Certifications & Specialized Training
+            </h3>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {CERTIFICATIONS.map((cert) => (
+              <div
+                key={cert.name}
+                className="p-6 rounded-2xl bg-neutral-100/70 dark:bg-neutral-900/50 border border-neutral-200/60 dark:border-neutral-800/60 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-accent bg-accent/10 px-2.5 py-0.5 rounded-full">
+                      {cert.issuer}
+                    </span>
+                    <span className="text-[10px] font-mono text-neutral-400">
+                      {cert.credentialId}
+                    </span>
+                  </div>
+                  <h4 className="text-base font-bold text-neutral-900 dark:text-white mb-2">
+                    {cert.name}
+                  </h4>
+                  <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
+                    {cert.details}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="mt-16 text-center">

@@ -32,7 +32,7 @@ function checkGuardrails(text: string): { isValid: boolean; reason: 'vulgarity' 
 
   // 2. Out of Context Check
   // Allow greetings, friendly small talk, and direct inquiries about Cyril's portfolio/background
-  const portfolioKeywords = /\b(cyril|ayson|portfolio|project|work|job|intern|internship|prosperna|audit|shopify|checkout|tailwind|pr|prs|metrics|contact|email|skills|resume|cv|hired|hire|experience|education|school|college|university|wizsalon|caesartrainer|flappy|wizard|tech|developer|engineer|software|about|hi|hello|hey|greetings|how are you|who are you|what is this|tell me about yourself|help|good morning|good afternoon|good evening)\b/i;
+  const portfolioKeywords = /\b(cyril|ayson|portfolio|project|projects|work|job|intern|internship|prosperna|audit|shopify|checkout|tailwind|pr|prs|metrics|contact|email|skills|resume|cv|hired|hire|experience|education|school|college|university|mmcl|mapua|wizsalon|wizaloon|kmp|docuchain|ocr|trocr|makitest|godseye|mediapipe|ar test lab|unity|arcore|devpulse|aura|caesartrainer|flappy|wizard|ibm|comptia|coursera|certificate|certification|certifications|capstone|capstones|churn|pca|tech|developer|engineer|software|about|hi|hello|hey|greetings|how are you|who are you|what is this|tell me about yourself|help|good morning|good afternoon|good evening)\b/i;
   
   if (portfolioKeywords.test(trimmed)) {
     return { isValid: true, reason: null };
@@ -61,10 +61,10 @@ function checkGuardrails(text: string): { isValid: boolean; reason: 'vulgarity' 
 }
 
 const QUICK_QUESTIONS = [
-  "What were your key accomplishments at Prosperna?",
-  "How did you audit Shopify vs Prosperna checkout?",
-  "Tell me about the Tailwind CSS v4 migration",
-  "What is your full engineering tech stack?"
+  "What were your key accomplishments at Prosperna (503 PRs)?",
+  "Tell me about DocuChain, MakiTest, and AR Test Lab",
+  "How did you cut mobile checkout TBT by 58% vs Shopify?",
+  "What certifications and ML capstones have you completed?"
 ];
 
 export default function Chatbot() {

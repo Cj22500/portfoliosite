@@ -192,7 +192,7 @@ function PrTrajectoryChart() {
       cumulative: 43,
       merged: 36,
       mergeRate: "92.3%",
-      share: "8.0%",
+      share: "7.8%",
       pace: "9.8 PRs/wk",
       gradient: "from-blue-600 to-indigo-600",
       glowColor: "rgba(59, 130, 246, 0.4)",
@@ -209,14 +209,14 @@ function PrTrajectoryChart() {
       cumulative: 93,
       merged: 47,
       mergeRate: "94.0%",
-      share: "10.2%",
+      share: "9.9%",
       pace: "11.1 PRs/wk",
       gradient: "from-indigo-600 to-violet-600",
       glowColor: "rgba(99, 102, 241, 0.4)",
       theme: "Tailwind Migration Branch & Headless Primitives",
       repos: ["merchant-admin-portal", "orders-fulfillment-service", "identity-access-service"],
       tech: ["Headless UI Dialog", "React 18", "Redux Toolkit"],
-      highlights: "Created AppModal using Headless UI Dialog primitives, began migrating admin dashboard modals, and overhauled order status badges and datatable layouts."
+      highlights: "Created AppModal using Headless UI Dialog primitives, began migrating admin dashboard modals across 336+ files, and overhauled order status badges and datatable layouts."
     },
     {
       month: "August",
@@ -226,7 +226,7 @@ function PrTrajectoryChart() {
       cumulative: 295,
       merged: 191,
       mergeRate: "94.6%",
-      share: "41.3%",
+      share: "40.2%",
       pace: "44.9 PRs/wk",
       isPeak: true,
       gradient: "from-violet-600 via-indigo-600 to-fuchsia-500",
@@ -234,7 +234,7 @@ function PrTrajectoryChart() {
       theme: "Peak Sprint: Admin UI Migration & Checkout Performance Audit",
       repos: ["merchant-admin-portal", "storefront-checkout-engine", "orders-fulfillment-service", "merchant-config-service"],
       tech: ["Puppeteer", "Lighthouse CI", "React 18", "Tailwind v4"],
-      highlights: "Major milestone: Migrated 5 critical merchant admin panels (Analytics, Orders, Contacts, Products, Media Library) off React-Bootstrap. Built Puppeteer + Lighthouse audit benchmarking Prosperna vs. Shopify PH checkouts. Slashed mobile TBT by ~240ms."
+      highlights: "Major milestone: Migrated 5 critical merchant admin panels (Analytics, Orders, Contacts, Products, Media Library) off React-Bootstrap. Built Puppeteer + Lighthouse audit benchmarking Prosperna vs. Shopify PH checkouts. Slashed mobile TBT by 58% (160ms vs. 380ms)."
     },
     {
       month: "September",
@@ -244,35 +244,35 @@ function PrTrajectoryChart() {
       cumulative: 422,
       merged: 118,
       mergeRate: "92.9%",
-      share: "26.0%",
+      share: "25.2%",
       pace: "28.2 PRs/wk",
       gradient: "from-violet-600 to-teal-500",
       glowColor: "rgba(20, 184, 166, 0.4)",
       theme: "Cross-Border Address Localization & Order Processing Buffers",
       repos: ["storefront-checkout-engine", "logistics-routing-service", "merchant-config-service", "orders-fulfillment-service", "notification-dispatch-service"],
-      tech: ["Google Maps API", "Express APIs", "PostgreSQL"],
-      highlights: "Shipped dynamic multi-country address resolvers (PH, CA, AU, NZ) across 6 microservices. Added Google Maps coordinate pinning for Lalamove. Implemented store-level preparation buffers (ClickUp 86eqqfmv1)."
+      tech: ["Google Maps API", "Express APIs", "MongoDB / PostgreSQL"],
+      highlights: "Shipped dynamic 5-country address resolvers (PH, US, CA, AU, NZ) across 6 microservices. Added Google Maps coordinate pinning for Lalamove. Implemented store-level preparation buffers (ClickUp 86eqqfmv1)."
     },
     {
-      month: "October",
-      shortMonth: "Oct",
-      phase: "Phase 6: Governance & Production Handoff",
-      prs: 67,
-      cumulative: 489,
-      merged: 57,
-      mergeRate: "85.1%",
-      share: "13.7%",
-      pace: "14.9 PRs/wk",
+      month: "Oct–Nov",
+      shortMonth: "Oct–Nov",
+      phase: "Phase 6: Concurrency, Catalog & Production Handoff",
+      prs: 81,
+      cumulative: 503,
+      merged: 72,
+      mergeRate: "88.9%",
+      share: "16.1%",
+      pace: "16.2 PRs/wk",
       gradient: "from-teal-600 to-amber-500",
       glowColor: "rgba(245, 158, 11, 0.4)",
-      theme: "Catalog Bulk Editor, MaxAI Governance & Production Handoff",
-      repos: ["merchant-admin-portal", "promotions-rules-engine", "analytics-telemetry-service", "identity-access-service"],
-      tech: ["Formik/Yup", "Subagent LLM governance", "Vitest"],
-      highlights: "Centralized stock editing into BulkUpdateQuantityModal, hardened digital product upload retry error recovery with Formik/Yup, governed MaxAI subagents, and finalized complete codebase handoff."
+      theme: "Atomic State-Claim Locking, Catalog Bulk Editor & Final Handoff",
+      repos: ["merchant-admin-portal", "orders-fulfillment-service", "promotions-rules-engine", "analytics-telemetry-service", "identity-access-service"],
+      tech: ["Formik/Yup", "Atomic Locks", "MaxAI Sub-Agents", "Vitest"],
+      highlights: "Engineered atomic notification state-claim locking (findOneAndUpdate) & store-timezone UTC offset serialization (scheduled_at). Centralized stock editing into BulkUpdateQuantityModal, integrated MaxAI chat components, and completed 6-month production handoff."
     }
   ];
 
-  const maxVal = chartMode === 'cumulative' ? 500 : 220;
+  const maxVal = chartMode === 'cumulative' ? 503 : 220;
   const cur = monthlyData[selectedMonth];
   const activeTooltipMonth = hoveredMonth !== null ? monthlyData[hoveredMonth] : null;
 
@@ -290,10 +290,10 @@ function PrTrajectoryChart() {
             </span>
           </div>
           <h3 className="text-xl sm:text-2xl font-bold font-display text-neutral-900 dark:text-white mt-1">
-            Pull Request Velocity Trajectory (May – Oct 2026)
+            Pull Request Velocity Trajectory (May – Nov 2026)
           </h3>
           <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">
-            489 authored PRs with 453 merged (92.6% merge rate) across 6 months of agile bi-weekly sprints.
+            503 authored PRs with 468 merged (93.0% merge rate) across 6 months of agile bi-weekly sprints.
           </p>
         </div>
 
@@ -317,7 +317,7 @@ function PrTrajectoryChart() {
                 : 'text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-200'
             }`}
           >
-            Cumulative (4 → 489)
+            Cumulative (4 → 503)
           </button>
           <button
             onClick={() => setChartMode('merged')}
@@ -341,7 +341,7 @@ function PrTrajectoryChart() {
           <div>
             <span className="text-[10px] text-neutral-400 uppercase tracking-wider block">Peak Sprint</span>
             <strong className="text-neutral-900 dark:text-white font-bold">August (202 PRs)</strong>
-            <span className="text-[10px] text-purple-500 block">41.3% tenure volume</span>
+            <span className="text-[10px] text-purple-500 block">40.2% tenure volume</span>
           </div>
         </div>
 
@@ -351,7 +351,7 @@ function PrTrajectoryChart() {
           </div>
           <div>
             <span className="text-[10px] text-neutral-400 uppercase tracking-wider block">Merge Efficiency</span>
-            <strong className="text-neutral-900 dark:text-white font-bold">92.6% (453 / 489)</strong>
+            <strong className="text-neutral-900 dark:text-white font-bold">93.0% (468 / 503)</strong>
             <span className="text-[10px] text-emerald-500 block">High reliability</span>
           </div>
         </div>
@@ -373,8 +373,8 @@ function PrTrajectoryChart() {
           </div>
           <div>
             <span className="text-[10px] text-neutral-400 uppercase tracking-wider block">Sprint Velocity</span>
-            <strong className="text-neutral-900 dark:text-white font-bold">~18.8 PRs / wk</strong>
-            <span className="text-[10px] text-neutral-500 dark:text-neutral-400 block">81.5 PRs / mo avg</span>
+            <strong className="text-neutral-900 dark:text-white font-bold">~19.3 PRs / wk</strong>
+            <span className="text-[10px] text-neutral-500 dark:text-neutral-400 block">83.8 PRs / mo avg</span>
           </div>
         </div>
       </div>
@@ -620,7 +620,7 @@ function PrTrajectoryChart() {
           <div>
             <span className="text-neutral-400 text-[10px] uppercase tracking-wider block">Cumulative:</span>
             <strong className="text-neutral-700 dark:text-neutral-300 text-sm font-bold">{cur.cumulative} PRs</strong>
-            <span className="text-[10px] text-neutral-400 block">Trajectory to 489</span>
+            <span className="text-[10px] text-neutral-400 block">Trajectory to 503</span>
           </div>
           <div>
             <span className="text-neutral-400 text-[10px] uppercase tracking-wider block">Sprint Pace:</span>
@@ -662,10 +662,10 @@ function MicroservicesEcosystem() {
       name: "Merchant Admin Portal Engine",
       serviceId: "service://merchant-admin-portal",
       domain: "frontend",
-      prs: 265,
+      prs: 279,
       role: "Merchant Administration Core",
-      tech: ["React 18", "Tailwind CSS v4", "Bootstrap Migration", "Redux", "Vitest"],
-      desc: "Flagship merchant administrative portal. Spearheaded the full migration off legacy React-Bootstrap to Tailwind CSS v4, built Headless UI AppModal primitives, modernized the product catalog wizard, and integrated MaxAI domain subagents."
+      tech: ["React 18", "Tailwind CSS v4", "Headless UI", "Redux", "Vitest"],
+      desc: "Flagship merchant administrative portal. Spearheaded the 21-module migration off React-Bootstrap to Tailwind CSS v4 across 336+ files and 455+ call sites (AppButton, AppModal, Grid, InputGroup, Spinner, TooltipIcon), modernized the product catalog wizard, and integrated MaxAI chat components."
     },
     {
       name: "Customer Storefront & Checkout Engine",
@@ -674,25 +674,25 @@ function MicroservicesEcosystem() {
       prs: 88,
       role: "Consumer Commerce & Checkout Core",
       tech: ["Next.js 15", "React", "Tailwind CSS", "Jest", "Playwright"],
-      desc: "High-conversion consumer storefront and checkout engine. Restructured Next.js 15 SplitChunks to eliminate render-blocking scripts, integrated dynamic payment SDK injection, built multi-country address resolvers, and eliminated CLS layout shifts."
+      desc: "High-conversion consumer storefront and checkout engine. Restructured Next.js SplitChunks and deferred post-hydration telemetry to cut initial JS by 43% (~140 KB saved) and slash mobile Total Blocking Time by 58% (160ms vs. 380ms)."
     },
     {
       name: "Order Orchestration & Fulfillment Microservice",
       serviceId: "service://orders-fulfillment-service",
       domain: "backend",
-      prs: 46,
+      prs: 37,
       role: "Orders & Fulfillment Backend",
-      tech: ["Node.js", "Express", "PostgreSQL", "Jest", "State Machines"],
-      desc: "Backend order orchestration engine. Coordinated order state transitions, delivery time slot scheduling, dispatch triggers, and automated invoice PDF compilation."
+      tech: ["Node.js", "Express", "MongoDB / PostgreSQL", "Jest", "Atomic Locks"],
+      desc: "Backend order orchestration engine. Engineered atomic notification state-claim locking (findOneAndUpdate) with retry recovery, store-timezone UTC offset serialization (scheduled_at), and country-aware CSV export sanitization."
     },
     {
       name: "Merchant Configuration & Settings Engine",
       serviceId: "service://merchant-config-service",
       domain: "backend",
-      prs: 24,
+      prs: 28,
       role: "Merchant Configuration Engine",
-      tech: ["Node.js", "RESTful API", "PostgreSQL"],
-      desc: "Core business configuration engine. Designed store-level preparation buffers (ClickUp 86eqqfmv1) to intelligently schedule delivery dates across all merchant tiers."
+      tech: ["Node.js", "RESTful API", "ISO 3166-2", "MongoDB"],
+      desc: "Core business configuration engine. Architected store-level Order Processing Time buffers (ClickUp 86eqqfmv1) across all merchant tiers and ISO 3166-2 international subdivision validation (PH, US, CA, AU, NZ)."
     },
     {
       name: "Transactional Notification & Dispatch Service",
@@ -701,43 +701,43 @@ function MicroservicesEcosystem() {
       prs: 22,
       role: "Transactional Notification Service",
       tech: ["Node.js", "Microservices", "SendGrid", "Amazon SES"],
-      desc: "High-throughput messaging service. Designed transactional order receipts, dispatch updates, and multi-currency localized email invoice templates."
+      desc: "High-throughput messaging service. Engineered idempotent event-driven email dispatch via Amazon SES and SendGrid with localized multi-currency invoice templates."
     },
     {
       name: "Identity, RBAC & Customer Session Service",
       serviceId: "service://identity-access-service",
       domain: "backend",
-      prs: 20,
+      prs: 17,
       role: "Identity, RBAC & Customer Accounts",
-      tech: ["Node.js", "JWT", "Auth0", "PostgreSQL"],
-      desc: "Authentication and role management service. Hardened guest checkout identity resolution and passed full localized phone and international address metadata into CRM pipelines."
+      tech: ["Node.js", "JWT", "RBAC", "MongoDB"],
+      desc: "Authentication and role management service. Hardened guest checkout identity resolution, merchant RBAC permissions, and MongoDB ObjectId createdAt timestamp fallbacks for cumulative analytics."
     },
     {
       name: "Promotions & Discount Calculation Engine",
       serviceId: "service://promotions-rules-engine",
       domain: "services",
-      prs: 9,
+      prs: 15,
       role: "Promotions & Discounts Engine",
-      tech: ["Node.js", "Redis", "PostgreSQL"],
-      desc: "High-speed promotional rule evaluator. Handled coupon validation, flash discount rules, and caching layer optimizations using Redis."
+      tech: ["Node.js", "Redis", "MongoDB / PostgreSQL"],
+      desc: "High-speed promotional rule evaluator. Implemented guest-checkout country validation, lead-to-customer address synchronization, and discount rule evaluation."
     },
     {
       name: "Logistics & Courier Routing Microservice",
       serviceId: "service://logistics-routing-service",
       domain: "services",
-      prs: 8,
+      prs: 11,
       role: "Logistics & Courier Orchestrator",
-      tech: ["Node.js", "Third-Party Courier APIs", "Lalamove", "J&T Express"],
-      desc: "Logistics integration service. Integrated live dispatch tracking, shipping quote calculators, and automated courier filtering for domestic and international destinations."
+      tech: ["Node.js", "Lalamove", "J&T Express", "Google Maps GIS"],
+      desc: "Logistics integration service. Integrated Lalamove and J&T Express webhooks, dynamic delivery fee matrices, and Google Maps pin-coordinate geocoding."
     },
     {
       name: "Commerce Intelligence & Telemetry Pipeline",
       serviceId: "service://analytics-telemetry-service",
       domain: "backend",
-      prs: 7,
+      prs: 6,
       role: "Merchant Intelligence & Attribution",
-      tech: ["Node.js", "PostgreSQL", "Data Pipelines"],
-      desc: "E-commerce visitor telemetry pipeline. Diagnosed and fixed the duplicate session tracking bug in 'Traffic by Source', restoring accurate merchant analytics data."
+      tech: ["Node.js", "Data Pipelines", "Telemetry"],
+      desc: "E-commerce visitor telemetry pipeline. Diagnosed and resolved duplicate session tracking bugs in 'Traffic by Source' attribution reporting."
     }
   ];
 
@@ -936,11 +936,11 @@ export default function InternshipPage({ onBack }: InternshipPageProps) {
             </span>
             <span className="w-1.5 h-1.5 rounded-full bg-neutral-200 dark:bg-neutral-800" />
             <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 font-mono">
-              May 2026 – October 2026 (6 Months)
+              May 2026 – November 2026 (6 Months Completed)
             </span>
             <span className="w-1.5 h-1.5 rounded-full bg-neutral-200 dark:bg-neutral-800" />
             <span className="text-xs font-bold font-mono text-emerald-600 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-950/40 px-2.5 py-0.5 rounded-full">
-              489 Authored PRs
+              503 Authored PRs (468 Merged)
             </span>
           </div>
 
@@ -950,7 +950,7 @@ export default function InternshipPage({ onBack }: InternshipPageProps) {
           </h1>
           
           <p className="text-lg md:text-xl text-neutral-600 dark:text-neutral-300 font-light leading-relaxed max-w-3xl">
-            A comprehensive, high-fidelity engineering dossier of my 6-month software engineering tenure at Prosperna Inc. Discover how I authored 489 Pull Requests across 9 enterprise repositories, migrated mission-critical admin workspaces to Tailwind CSS v4, benchmarked checkout funnels against Shopify, and mapped cross-border logistics.
+            A comprehensive, high-fidelity engineering dossier of my completed 6-month software engineering tenure at Prosperna Inc. Discover how I authored 503 Pull Requests (468 merged — 93.0% merge rate) across 9 enterprise repositories, migrated 336+ files of mission-critical admin workspaces to Tailwind CSS v4, cut mobile checkout Total Blocking Time by 58%, and engineered distributed backend concurrency and multi-country logistics.
           </p>
         </header>
 
@@ -958,8 +958,8 @@ export default function InternshipPage({ onBack }: InternshipPageProps) {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 py-6 border-y border-neutral-200 dark:border-neutral-800 mb-16 bg-white/50 dark:bg-neutral-900/20 backdrop-blur-sm rounded-3xl px-6">
           <div className="space-y-1">
             <span className="text-[10px] font-bold text-neutral-400 dark:text-neutral-500 uppercase tracking-widest block">Total PRs</span>
-            <span className="text-2xl font-bold text-neutral-900 dark:text-white font-mono">489</span>
-            <span className="text-[11px] text-emerald-500 font-mono block">453 Merged (92.6%)</span>
+            <span className="text-2xl font-bold text-neutral-900 dark:text-white font-mono">503</span>
+            <span className="text-[11px] text-emerald-500 font-mono block">468 Merged (93.0%)</span>
           </div>
 
           <div className="space-y-1">
@@ -971,15 +971,15 @@ export default function InternshipPage({ onBack }: InternshipPageProps) {
           <div className="space-y-1">
             <span className="text-[10px] font-bold text-neutral-400 dark:text-neutral-500 uppercase tracking-widest block">Tenure</span>
             <span className="text-2xl font-bold text-neutral-900 dark:text-white font-mono">6 Mos</span>
-            <span className="text-[11px] text-accent font-mono block font-semibold" title="Computed at 7:00 AM - 9:00 PM workdays, factoring Philippine national holidays (580+ Practicum / 1,620+ Total Tenure)">
-              580+ Practicum Hrs
+            <span className="text-[11px] text-accent font-mono block font-semibold" title="480 Verified Practicum Hours completed alongside full 6-month enterprise engineering tenure">
+              480 Practicum Hrs
             </span>
           </div>
 
           <div className="space-y-1">
             <span className="text-[10px] font-bold text-neutral-400 dark:text-neutral-500 uppercase tracking-widest block">Test Coverage</span>
             <span className="text-2xl font-bold text-neutral-900 dark:text-white font-mono">&gt;80%</span>
-            <span className="text-[11px] text-neutral-400 font-mono block">Vitest & Jest Suites</span>
+            <span className="text-[11px] text-neutral-400 font-mono block">685+ Vitest & Jest</span>
           </div>
 
           <div className="space-y-1">
@@ -990,8 +990,8 @@ export default function InternshipPage({ onBack }: InternshipPageProps) {
 
           <div className="space-y-1">
             <span className="text-[10px] font-bold text-neutral-400 dark:text-neutral-500 uppercase tracking-widest block">TBT Reduction</span>
-            <span className="text-2xl font-bold text-emerald-600 dark:text-emerald-400 font-mono">~240ms</span>
-            <span className="text-[11px] text-neutral-400 font-mono block">Mobile 4G Networks</span>
+            <span className="text-2xl font-bold text-emerald-600 dark:text-emerald-400 font-mono">58%</span>
+            <span className="text-[11px] text-neutral-400 font-mono block">160ms vs 380ms Mobile</span>
           </div>
         </div>
 
@@ -1013,7 +1013,7 @@ export default function InternshipPage({ onBack }: InternshipPageProps) {
               Prosperna operates as a highly specialized Software-as-a-Service (SaaS) multi-tenant e-commerce platform built to solve digital retail challenges for micro, small, and medium enterprises (MSMEs) in developing markets. Built upon a federated architecture of multiple frontend and backend repositories, it provides merchant dashboards, custom store creators, lightning-fast storefronts, localized payment gateways, and delivery channels.
             </p>
             <p>
-              During my 6-month engineering tenure (May to October 2026), I authored and merged 489 Pull Requests across both consumer-facing Next.js storefronts and core merchant administrative portals. My responsibilities included mobile Web Vitals profiling, architecting the system-wide migration off React-Bootstrap to Tailwind CSS v4, coordinating cross-border address schemas, and implementing store-level order preparation buffers.
+              During my 6-month engineering tenure (May to November 2026), I authored 503 Pull Requests (468 merged — 93.0% merge rate) across consumer-facing Next.js storefronts, core React merchant administrative portals, and Node.js backend microservices. My responsibilities included mobile Web Vitals profiling, architecting the 21-module migration off React-Bootstrap to Tailwind CSS v4 across 336+ files and 455+ call sites, engineering atomic notification state-claim locking and store-timezone UTC offset serialization, coordinating 5-country address schemas, and implementing store-level order preparation buffers.
             </p>
           </div>
         </section>
@@ -1057,28 +1057,28 @@ export default function InternshipPage({ onBack }: InternshipPageProps) {
                 title: "Legacy React-Bootstrap to Tailwind v4 Core Migration Branch",
                 scope: "Merchant Administration Core",
                 badge: "Modernization & Testing",
-                desc: "Created AppModal using Headless UI Dialog primitives as the official replacement for legacy Bootstrap modals. Migrated bulk order tracker tables, and aligned Jest and Vitest test suites with the updated Tailwind DOM structures."
+                desc: "Created AppModal using Headless UI Dialog primitives and re-engineered shared UI primitives (AppButton, Grid, InputGroup, Spinner, TooltipIcon) across 336+ files and 455+ call sites. Migrated bulk order tracker tables and aligned Jest/Vitest test suites."
               },
               {
                 time: "August 2026 (202 PRs)",
                 title: "Peak Engineering Sprint: 5 Admin Workspaces & Checkout Performance Audit",
                 scope: "Admin Portal & Checkout Core",
                 badge: "Peak Delivery & Performance",
-                desc: "Peak productivity sprint: Refactored 5 essential admin panels (Analytics Dashboard, Orders Management, Contacts Directory, Products & Inventory Workspace, Media Library). Built automated Puppeteer + Lighthouse audit benchmarking Prosperna vs. Shopify PH checkouts, reclaiming ~240ms of mobile Total Blocking Time."
+                desc: "Peak productivity sprint: Refactored 5 essential admin panels (Analytics Dashboard, Orders Management, Contacts Directory, Products & Inventory Workspace, Media Library). Built automated Puppeteer + Lighthouse audit benchmarking Prosperna vs. Shopify PH checkouts, proving 58% lower mobile Total Blocking Time (160ms vs. 380ms)."
               },
               {
                 time: "September 2026 (127 PRs)",
                 title: "Cross-Border Address Localization & Order Processing Time Buffers",
                 scope: "6 Federated Microservices (Storefront, Logistics, Config, Orders, Dispatch, Identity)",
                 badge: "Logistics & Cross-Border",
-                desc: "Architected dynamic multi-country address resolvers (US, CA, AU, NZ) across 6 microservices while preserving Philippine Barangay selectors. Integrated Google Maps pin coordinates for Lalamove. Delivered store-level Order Processing Time buffers (ClickUp 86eqqfmv1)."
+                desc: "Architected dynamic 5-country address resolvers (PH, US, CA, AU, NZ) across 6 microservices while preserving Philippine Barangay selectors. Integrated Google Maps pin coordinates for Lalamove. Delivered store-level Order Processing Time buffers (ClickUp 86eqqfmv1)."
               },
               {
-                time: "October 2026 (67 PRs)",
-                title: "Catalog Overhaul, MaxAI Subagent Governance & Production Release",
+                time: "Oct–Nov 2026 (81 PRs)",
+                title: "Distributed Concurrency, Catalog Overhaul, MaxAI Integration & Production Release",
                 scope: "Platform-wide Core Repositories",
-                badge: "AI & Production Release",
-                desc: "Deprecated StockEditDrawer and centralized inventory into BulkUpdateQuantityModal. Hardened digital asset upload error recovery with Formik and Yup. Governed MaxAI domain subagents and completed comprehensive multi-repo engineering handoffs."
+                badge: "Concurrency, AI & Release",
+                desc: "Engineered atomic notification state-claim locking (findOneAndUpdate) and store-timezone UTC offset serialization (scheduled_at). Deprecated StockEditDrawer and centralized inventory into BulkUpdateQuantityModal, integrated MaxAI chat components and domain sub-agents, and completed comprehensive multi-repo engineering handoffs."
               }
             ].map((milestone, idx) => (
               <motion.div 
@@ -1264,7 +1264,7 @@ export default function InternshipPage({ onBack }: InternshipPageProps) {
               <div className="grid lg:grid-cols-12 gap-10 items-start">
                 <div className="lg:col-span-7 space-y-6 text-neutral-600 dark:text-neutral-300 leading-relaxed text-sm">
                   <p>
-                    <strong>Context & Systems Modernization:</strong> The legacy merchant panel was built using React-Bootstrap, which introduced substantial CSS bloat and restricted custom theme generation. Under Epic 1 (<code className="text-xs font-mono text-accent">86exwu2xu</code>) and branch <code className="text-xs font-mono text-accent">enhancement/cyril-redesign</code>, I spearheaded the systemic 21-part migration to Tailwind CSS v4, authoring 265 Pull Requests on this repository alone. I built reusable Headless UI primitives, authored the migration manual, and refactored the entire admin workspace without regressions.
+                    <strong>Context & Systems Modernization:</strong> The legacy merchant panel was built using React-Bootstrap, which introduced substantial CSS bloat and restricted custom theme generation. Under Epic 1 (<code className="text-xs font-mono text-accent">86exwu2xu</code>) and branch <code className="text-xs font-mono text-accent">enhancement/cyril-redesign</code>, I spearheaded the systemic 21-part migration to Tailwind CSS v4, authoring 279 Pull Requests on this repository alone. I re-engineered shared UI primitives (<code className="text-xs font-mono text-accent">AppButton</code>, <code className="text-xs font-mono text-accent">AppModal</code>, <code className="text-xs font-mono text-accent">Grid</code>, <code className="text-xs font-mono text-accent">InputGroup</code>, <code className="text-xs font-mono text-accent">Spinner</code>, <code className="text-xs font-mono text-accent">TooltipIcon</code>) across 336+ files and 455+ call sites without visual regressions.
                   </p>
 
                   <div className="grid sm:grid-cols-2 gap-6 pt-2">
@@ -1439,7 +1439,7 @@ export default function InternshipPage({ onBack }: InternshipPageProps) {
               <div className="grid lg:grid-cols-12 gap-10 items-start">
                 <div className="lg:col-span-7 space-y-6 text-neutral-600 dark:text-neutral-300 leading-relaxed text-sm">
                   <p>
-                    <strong>Context & AI-Assisted Scale:</strong> Managing 489 Pull Requests across 9 microservices in 6 months required rigorous modern tooling. I combined multi-repo git worktrees with terminal-based Claude Code pair programming, while also contributing directly to Prosperna's own native AI framework, MaxAI.
+                    <strong>Context & AI-Assisted Scale:</strong> Managing 503 Pull Requests (468 merged — 93.0% merge rate) across 9 microservices in 6 months required rigorous modern tooling. I combined multi-repo git worktrees with terminal-based Claude Code pair programming, engineered distributed backend concurrency locks, and contributed directly to Prosperna's native AI framework, MaxAI.
                   </p>
 
                   <div className="grid sm:grid-cols-2 gap-6 pt-2">
@@ -1449,9 +1449,9 @@ export default function InternshipPage({ onBack }: InternshipPageProps) {
                           <Boxes size={16} />
                         </div>
                         <div>
-                          <h4 className="font-bold text-neutral-900 dark:text-white text-base">Consolidated Bulk Stock Editor</h4>
+                          <h4 className="font-bold text-neutral-900 dark:text-white text-base">Consolidated Bulk Stock Editor & Atomic Concurrency</h4>
                           <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1 leading-relaxed">
-                            Deprecated and removed legacy <code className="text-xs font-mono">StockEditDrawer</code>, centralizing all per-location stock updates into <code className="text-xs font-mono">BulkUpdateQuantityModal</code> with intuitive "Set All" and "Adjust All" batch actions.
+                            Deprecated legacy <code className="text-xs font-mono">StockEditDrawer</code>, centralizing per-location stock updates into <code className="text-xs font-mono">BulkUpdateQuantityModal</code>. On the backend, engineered atomic notification state-claim locking (<code className="text-xs font-mono">findOneAndUpdate</code>) and store-timezone UTC offset serialization (<code className="text-xs font-mono">scheduled_at</code>).
                           </p>
                         </div>
                       </div>
@@ -1475,9 +1475,9 @@ export default function InternshipPage({ onBack }: InternshipPageProps) {
                           <Sparkles size={16} />
                         </div>
                         <div>
-                          <h4 className="font-bold text-neutral-900 dark:text-white text-base">MaxAI Architectural Governance</h4>
+                          <h4 className="font-bold text-neutral-900 dark:text-white text-base">MaxAI Chat Components & Domain Sub-Agent Integration</h4>
                           <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1 leading-relaxed">
-                            Contributed to Prosperna's unified AI Assistant framework (<code className="text-xs font-mono">MaxAI</code>), organizing functionality into dedicated domain SubAgents (<code className="text-xs font-mono">PageBuilder</code>, <code className="text-xs font-mono">Marketing</code>, <code className="text-xs font-mono">Blog</code>, <code className="text-xs font-mono">Products</code>, <code className="text-xs font-mono">Insights</code>, <code className="text-xs font-mono">Copilot</code>) and extending <code className="text-xs font-mono">useMaxAI.js</code> streaming hooks.
+                            Contributed to Prosperna's unified AI Assistant framework (<code className="text-xs font-mono">MaxAI</code>) across domain SubAgents (<code className="text-xs font-mono">PageBuilder</code>, <code className="text-xs font-mono">Marketing</code>, <code className="text-xs font-mono">Blog</code>, <code className="text-xs font-mono">Products</code>, <code className="text-xs font-mono">Insights</code>, <code className="text-xs font-mono">Copilot</code>), building <code className="text-xs font-mono">ChatHistoryDropdown</code> and extending <code className="text-xs font-mono">useMaxAI.js</code> streaming hooks.
                           </p>
                         </div>
                       </div>
