@@ -23,11 +23,17 @@ import {
   Database,
   Moon,
   Sun,
-  ArrowUpRight
+  ArrowUpRight,
+  Zap,
+  BarChart3,
+  Gauge,
+  CheckCircle2,
+  Activity
 } from 'lucide-react';
 import Chatbot from './components/Chatbot';
 import InternshipPage from './components/InternshipPage';
 import Guestbook from './components/Guestbook';
+import CheckoutAuditModal from './components/CheckoutAuditModal';
 import { db, handleFirestoreError, OperationType } from './firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
@@ -41,6 +47,7 @@ interface Project {
   image: string;
   link: string;
   github: string;
+  hasInteractiveAudit?: boolean;
 }
 
 interface Experience {
@@ -55,6 +62,16 @@ interface Experience {
 // --- Data ---
 
 const PROJECTS: Project[] = [
+  {
+    id: 5,
+    title: "E-Commerce Checkout Performance Audit & Optimization Engine",
+    description: "An automated performance audit and optimization suite comparing Shopify and Prosperna checkout journeys using Puppeteer and Lighthouse User Flows, analyzing Core Web Vitals to eliminate main-thread bottlenecks.",
+    tags: ["Puppeteer", "Lighthouse", "Next.js", "Core Web Vitals", "Webpack"],
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
+    link: "https://github.com/Cj22500/portfoliosite",
+    github: "https://github.com/Cj22500/portfoliosite",
+    hasInteractiveAudit: true
+  },
   {
     id: 1,
     title: "WizSalon KMP",
@@ -97,12 +114,15 @@ const EXPERIENCES: Experience[] = [
   {
     id: 4,
     role: "Software Engineer Intern",
-    company: "Prosperna Philippines",
-    period: "May 18 – August 4, 2026",
+    company: "Prosperna Inc.",
+    period: "May 2026 – October 2026",
     description: [
-      "Assisting in building SaaS and e-commerce platform solutions for MSMEs in the Philippines.",
-      "Developing features using React, TypeScript, Node.js, and relational database workflows.",
-      "Collaborating on third-party API integrations, checkout flows, and agile sprint deliveries."
+      "Authored 489 Pull Requests (453 merged — 92.6% merge rate) across 9 microservice repositories, driving core feature delivery and architectural modernization for Philippine and global MSME e-commerce.",
+      "Spearheaded the 21-part Merchant Dashboard UI migration from legacy React-Bootstrap to Tailwind CSS v4, authoring Headless UI Dialog Architecture primitives (AppModal) and standardizing design tokens.",
+      "Engineered storefront performance optimizations with Next.js Webpack splitChunks and deferred telemetry loading, benchmarked via automated Puppeteer + Lighthouse User Flows.",
+      "Delivered the Multi-Country Address Resolution Engine (PH, US, CA, AU, NZ) across checkout funnels, customer accounts, and back-office order management.",
+      "Built the Store-Level Preparation Buffer System for scheduled deliveries (Lalamove, J&T, Store Pickup) open to all merchant tiers.",
+      "Maintained >80% test coverage with Vitest and Jest while enforcing a zero-warning CI/CD quality gate across ESLint and Stylelint."
     ],
     showDetailsButton: true
   },
@@ -138,12 +158,12 @@ const EXPERIENCES: Experience[] = [
 ];
 
 const SKILLS = [
-  { category: "Frontend", items: ["React", "TypeScript", "Tailwind CSS", "Next.js"] },
-  { category: "Backend", items: ["Node.js", "Python", "Java", ".NET", "C#", "C++"] },
-  { category: "Mobile", items: ["Kotlin"] },
-  { category: "Databases & AI", items: ["PostgreSQL", "Firebase", "Machine Learning", "Data Processing"] },
-  { category: "Tools", items: ["Git", "Docker", "Google Cloud", "Vite"] },
-  { category: "Core", items: ["Data Structures", "Algorithms", "System Design"] }
+  { category: "Frontend & Architecture", items: ["React 18", "Next.js", "TypeScript", "Tailwind CSS v4", "Headless UI", "Formik / Yup", "Redux / Zustand"] },
+  { category: "Backend & Microservices", items: ["Node.js", "Express", "RESTful APIs", "PostgreSQL", "Redis", "SendGrid / SES", "Courier Integrations"] },
+  { category: "Testing & Performance", items: ["Vitest", "Jest", "Playwright E2E", "Puppeteer", "Lighthouse User Flows", "ESLint / Stylelint"] },
+  { category: "DevOps & Engineering Workflow", items: ["Git Worktrees", "GitHub CLI (gh)", "Webpack Optimization", "Docker", "Vite", "ClickUp API"] },
+  { category: "AI & Modern Tooling", items: ["Claude Code CLI", "Gemini API", "MaxAI Chat Integration", "Google AI Studio"] },
+  { category: "Core Computer Science", items: ["System Design", "Data Structures", "Algorithms", "Internationalization (i18n)", "Web Accessibility (a11y)"] }
 ];
 
 // --- Components ---
@@ -479,25 +499,51 @@ const About = () => {
   );
 };
 
-const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
+const ProjectCard: React.FC<{ 
+  project: Project;
+  onOpenAudit?: () => void;
+}> = ({ project, onOpenAudit }) => {
+  const isAudit = project.hasInteractiveAudit;
+
   return (
-    <motion.a 
-      href={project.github}
-      target="_blank"
-      rel="noopener noreferrer"
+    <motion.div 
       whileHover={{ y: -6 }}
-      className="group block rounded-3xl overflow-hidden glass-card shadow-xs hover:shadow-lg hover:shadow-accent/5 transition-all duration-300 border border-neutral-200/50 dark:border-neutral-800/50 glow-on-hover"
+      className={`group block rounded-3xl overflow-hidden glass-card shadow-xs hover:shadow-lg hover:shadow-accent/5 transition-all duration-300 border border-neutral-200/50 dark:border-neutral-800/50 glow-on-hover relative ${
+        isAudit ? 'ring-1 ring-accent/30 hover:border-accent/50' : ''
+      }`}
     >
-      <div className="aspect-video overflow-hidden relative border-b border-neutral-200/30 dark:border-neutral-800/30">
+      <div 
+        className="aspect-video overflow-hidden relative border-b border-neutral-200/30 dark:border-neutral-800/30 cursor-pointer"
+        onClick={() => {
+          if (isAudit && onOpenAudit) {
+            onOpenAudit();
+          } else {
+            window.open(project.github, '_blank', 'noopener,noreferrer');
+          }
+        }}
+      >
         <img 
           src={project.image} 
           alt={project.title} 
           className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
           referrerPolicy="no-referrer"
         />
+        {isAudit && (
+          <div className="absolute top-4 left-4 z-10 flex items-center gap-1.5 px-3 py-1 bg-neutral-900/90 backdrop-blur-md text-accent text-[11px] font-mono font-bold rounded-full border border-accent/30 shadow-md">
+            <Zap size={13} className="text-accent" />
+            Interactive Audit
+          </div>
+        )}
         <div className="absolute inset-0 bg-neutral-950/10 dark:bg-neutral-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-          <div className="bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest text-neutral-900 dark:text-white shadow-lg transform translate-y-3 group-hover:translate-y-0 transition-all duration-300 border border-neutral-200/20 dark:border-neutral-700/20">
-            View Project
+          <div className="bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest text-neutral-900 dark:text-white shadow-lg transform translate-y-3 group-hover:translate-y-0 transition-all duration-300 border border-neutral-200/20 dark:border-neutral-700/20 flex items-center gap-2">
+            {isAudit ? (
+              <>
+                <BarChart3 size={14} className="text-accent" />
+                Explore Audit Benchmarks
+              </>
+            ) : (
+              'View Project'
+            )}
           </div>
         </div>
       </div>
@@ -510,23 +556,59 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
           ))}
         </div>
         <div className="flex items-center justify-between mb-3">
-          <h3 className="text-2xl font-bold text-neutral-900 dark:text-white group-hover:text-accent dark:group-hover:text-accent-light transition-colors">{project.title}</h3>
-          <ExternalLink size={18} className="text-neutral-400 dark:text-neutral-500 group-hover:text-accent dark:group-hover:text-accent-light transition-colors" />
+          <h3 
+            onClick={() => {
+              if (isAudit && onOpenAudit) onOpenAudit();
+              else window.open(project.github, '_blank', 'noopener,noreferrer');
+            }}
+            className="text-2xl font-bold text-neutral-900 dark:text-white group-hover:text-accent dark:group-hover:text-accent-light transition-colors cursor-pointer"
+          >
+            {project.title}
+          </h3>
+          <a 
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="View on GitHub"
+            className="text-neutral-400 dark:text-neutral-500 hover:text-accent dark:group-hover:text-accent-light transition-colors p-1"
+          >
+            <ExternalLink size={18} />
+          </a>
         </div>
-        <p className="text-neutral-500 dark:text-neutral-400 text-sm leading-relaxed">{project.description}</p>
+        <p className="text-neutral-500 dark:text-neutral-400 text-sm leading-relaxed mb-4">{project.description}</p>
+        
+        {isAudit && (
+          <div className="pt-3 border-t border-neutral-200/50 dark:border-neutral-800/50 flex flex-wrap items-center justify-between gap-3">
+            <button
+              onClick={onOpenAudit}
+              className="px-4 py-2 bg-accent/10 hover:bg-accent hover:text-white text-accent rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5 cursor-pointer border border-accent/20"
+            >
+              <BarChart3 size={14} />
+              Open Interactive Audit
+            </button>
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-mono text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors flex items-center gap-1"
+            >
+              View Repository <ArrowUpRight size={12} />
+            </a>
+          </div>
+        )}
       </div>
-    </motion.a>
+    </motion.div>
   );
 };
 
-const Projects = () => {
+const Projects = ({ onOpenAuditModal }: { onOpenAuditModal: () => void }) => {
   return (
     <section id="projects" className="section-padding">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
           <div>
-            <h2 className="text-5xl font-bold mb-4 text-neutral-900 dark:text-white">Selected Work from GitHub</h2>
-            <p className="text-neutral-500 dark:text-neutral-400 max-w-md">A dynamic showcase of my repositories, demonstrating my technical skills and creative problem-solving.</p>
+            <h2 className="text-5xl font-bold mb-4 text-neutral-900 dark:text-white">Selected Work & Benchmarks</h2>
+            <p className="text-neutral-500 dark:text-neutral-400 max-w-md">A showcase of production software, open-source repositories, and automated performance benchmarking suites.</p>
           </div>
           <a href="https://github.com/Cj22500?tab=repositories" target="_blank" rel="noopener noreferrer" className="text-accent font-bold flex items-center gap-2 hover:gap-3 transition-all">
             View all on GitHub <ChevronRight size={20} />
@@ -535,7 +617,11 @@ const Projects = () => {
 
         <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
           {PROJECTS.map(project => (
-            <ProjectCard key={project.id} project={project} />
+            <ProjectCard 
+              key={project.id} 
+              project={project} 
+              onOpenAudit={onOpenAuditModal}
+            />
           ))}
         </div>
 
@@ -806,6 +892,7 @@ const Footer = () => {
 export default function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [currentPage, setCurrentPage] = useState<'portfolio' | 'internship'>('portfolio');
+  const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
@@ -840,7 +927,7 @@ export default function App() {
         <main>
           <Hero />
           <About />
-          <Projects />
+          <Projects onOpenAuditModal={() => setIsAuditModalOpen(true)} />
           <Experience onViewInternship={() => setCurrentPage('internship')} />
           <Contact />
           <section id="guestbook" className="section-padding border-t border-neutral-200/30 dark:border-neutral-800/30 bg-neutral-100/10 dark:bg-neutral-950/5">
@@ -854,6 +941,16 @@ export default function App() {
       )}
       <Footer />
       <Chatbot />
+
+      {/* Interactive Checkout Performance Audit Modal */}
+      <CheckoutAuditModal 
+        isOpen={isAuditModalOpen} 
+        onClose={() => setIsAuditModalOpen(false)}
+        onViewCaseStudy={() => {
+          setIsAuditModalOpen(false);
+          setCurrentPage('internship');
+        }}
+      />
     </div>
   );
 }

@@ -90,7 +90,7 @@ export default function JournalLogbook() {
             fetched.push({
               date: data.date,
               task: data.task,
-              shift: data.shift || "8:00 AM - 7:00 PM",
+              shift: data.shift || "7:00 AM - 9:00 PM",
               area: data.area || "Software Engineering",
               category: data.category || "Onboarding",
               content: data.content
@@ -185,7 +185,7 @@ export default function JournalLogbook() {
   const startAdding = () => {
     setEditDate("");
     setEditTask("");
-    setEditShift("8:00 AM - 7:00 PM");
+    setEditShift("7:00 AM - 9:00 PM");
     setEditArea("Software Engineering");
     setEditCategory("Onboarding");
     setEditContent("");
@@ -324,7 +324,7 @@ export default function JournalLogbook() {
           Mapúa Daily Journal Explorer
         </h2>
         <p className="text-neutral-500 dark:text-neutral-400 max-w-2xl mt-3 text-sm">
-          Browse through a complete, interactive facsimile archive of my daily internship logbooks submitted to Mapúa Malayan Colleges Laguna. Connects in real-time with our Google Firebase Firestore database.
+          Browse through a complete, interactive facsimile archive of my daily internship logbooks submitted to Mapúa Malayan Colleges Laguna. Records 42 intensive engineering days (7:00 AM – 9:00 PM workdays, totaling 580+ Practicum Hours factoring Philippine national holidays). Connects in real-time with our Google Firebase Firestore database.
         </p>
       </div>
 
@@ -621,7 +621,7 @@ export default function JournalLogbook() {
                         value={editShift}
                         onChange={(e) => setEditShift(e.target.value)}
                         className="bg-transparent text-neutral-800 dark:text-neutral-100 font-bold outline-none w-full text-xs"
-                        placeholder="e.g. 8:00 AM - 7:00 PM"
+                        placeholder="e.g. 7:00 AM - 9:00 PM"
                       />
                     </div>
                   </div>
